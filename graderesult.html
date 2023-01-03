@@ -4,6 +4,9 @@
     <head>
         <title>Grade Result</title>
         <style>
+            .email-body {
+                font-size:small;
+            }
             .signature {
                 font-weight: bold;
             }
@@ -19,6 +22,7 @@
     <body>
 
         <div class="result" id="result">
+            <div class="email-body">
             <p>Dear <strong><span id="name"></span></strong></p>
             <p>
                 Thank you for completing our online English proficiency test. It’s a really great tool for us to determine what your current English language Levels are and how long you would need to study with us once we know what your goals are for your future. Your score was <span style="color:orange;" id="grade"></span>.<br>
@@ -33,7 +37,7 @@
                 <br>We look forward to hearing from you.<br><br>
 
                 Best regards,<br></p>
-                
+            </div>
                 <div class="signature">
                     <p>The ACLA Admissions Team <br>
                     <em>Atlantic Canada Language Academy</em><br>
@@ -57,17 +61,20 @@
                     
 
                     <em>Confidentiality Notice: This message, including any attachments, is for the sole use of the intended recipient(s) and may contain confidential and privileged information. Any unauthorized review, use, disclosure, or distribution is strictly prohibited. If you are not the intended recipient, please contact the sender by reply e-mail and destroy all copies of the original message.</em>
-                        </p>
+            </p>
+            <p><span id="email"></span></p>
+            <p><span id="subject"></span></p>
                 </div>
             </p>
         </div>
-
+        <hr>
         <div class="aplication">
             
             <form>
-                <label>Điền tên học viên và số điểm:</label><br>
-                <input type="text" id="fname" placeholder="Enter Name" value="Phuc">
-                <input type="text" id="fgrade" placeholder="Enter result" value="A1">
+                <label>Điền email, tên học viên và số điểm:</label><br>
+                <input type="email" id="mail" placeholder="Enter Email">
+                <input type="text" id="fname" placeholder="Enter Name">
+                <input type="text" id="fgrade" placeholder="Enter result">
                 
             </form>
             <button onclick="fill()">Fill and copy</button>    
@@ -86,9 +93,10 @@
                 window.getSelection().removeAllRanges();// to deselect
             }
             function fill(){
+                document.getElementById("email").innerHTML = document.getElementById("mail").value;
                 document.getElementById("name").innerHTML = document.getElementById("fname").value;
                 document.getElementById("grade").innerHTML = document.getElementById("fgrade").value;
-
+                document.getElementById("subject").innerHTML = "RE: ACLA Free Enlish Language Test Result";
                 copy();
             }
         </script>
