@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Linh Tu Cover Letter</title>
+        <style>
+            .email-body {
+                font-size:small;
+            }
+            .result {
+                font-family:Arial, Helvetica, sans-serif;
+            }
+            h1 {
+            text-align: center;
+            font-size: 40px;
+            font-family: Arial;
+            background-color: #FFF;
+            }
+            p {
+            font-size: 15px;
+            font-family: Arial;
+            margin-top: 5px;
+            }
+            .blue {
+            color: blue;
+            text-decoration: underline;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h2>CoverLetterGen 1.0</h2>
+        <hr>
+        <div class="aplication">
+            <form>
+                <label>Company Name, Role, place of job posting:</label><br>
+                <input type="text" id="fname" placeholder="Enter Name">
+                <input type="text" id="frole" placeholder="Enter Role">
+                <input type="text" id="fplace" placeholder="Enter Place">
+                <input type="text" id="fid" placeholder="Enter JobID (optional)">
+                
+            </form>
+            <button onclick="fill()">Preview</button>
+            <button onclick="copy()">Copy</button>
+            <button onclick="printIt()">Save As PDF</button>    
+        </div>
+        <hr>
+        <div class="result" id="result">
+            <div class="title">
+                <h1 style="margin-bottom:0;">Linh Tu</h1>
+                <p style="text-align: center; margin: 0; padding-top : 0;">Toronto, ON  | 647 581 8284 | <span class="blue">linhletu2207@gmail.com</span></p>
+            </div>
+            <hr>
+            <div class="email-body">
+                <p><span id="date"></span></p>
+                <p><span id="jobID"></span></p>
+            <p>Dear hiring manager of <span class="name">company</span>,</p>
+            <p>It is my great pleasure to apply for the <span class="role"></span> role with <span class="name">the company</span> as posted internally on <span id="place">Linkedin</span>. As a 2nd-year Software Engineer student at Sheridan College who is passionate about finding bugs before users found them and improving software service quality, this opportunity caught my attention. With my proven academic and eagerness to learn new things, I am confident that my familiarity with Quality Assurance testing, Agile methodology knowledge, and attention to detail would qualify me as a competitive candidate for this position.</p>
+                <p><span class="name">The Company</span>'s requirement aligns with my passion for improving Software quality. Directly related to the requirements of this role, my main interest focuses deeply on quality assurance. To prove this matter, when I was applying my knowledge to develop my first Tic Tac Toe game with HTML and CSS, I was struggle a lot in finding bugs. It took me well 2 hours to identify, backtracking my logic in code,... etc only to find out that I made a typo in the CSS file. From there, I gain more attention to detail. As a candidate for <span class="role">this role</span> with <span class="name">company</span>, I would love to contribute similar results in terms of protecting clients and implementing safety measures to increase the quality of the product.
+            </p>
+
+            <p>Thank you for your time and consideration. With the details listed above that I can bring to <span class="name">the company</span>, I have the commitment and a strong passion for quality assurance to succeed as a competitive candidate. I would appreciate the chance to meet with you to speak more about this opportunity. </p>
+
+            <p>Sincerely,</p>
+            <p>Linh Tu.</p>
+
+            </div>
+        </div>
+        <hr>
+        
+        <script>
+            function copy(){
+                fill();
+                var range = document.createRange();
+                range.selectNode(document.getElementById("result"));
+                window.getSelection().removeAllRanges(); // clear current selection
+                window.getSelection().addRange(range); // to select text
+                document.execCommand("copy");
+                window.getSelection().removeAllRanges();// to deselect
+            }
+            function fill(){
+                var today = new Date();                
+                var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+
+                today = months[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear();
+                for (let i of document.getElementsByClassName("name")){
+                    i.innerHTML = document.getElementById("fname").value;
+                }
+                document.getElementById("place").innerHTML = document.getElementById("fplace").value;
+                for (let i of document.getElementsByClassName("role")){
+                    i.innerHTML = document.getElementById("frole").value;
+                }
+                document.getElementById("date").innerHTML = today;
+                console.log(document.getElementById("fid").value)
+                if (document.getElementById("fid").value != "") {
+                    document.getElementById("jobID").innerHTML = "Job Posting Number: "+document.getElementById("fid").value;
+                }
+            }
+            function printIt(){
+                printDiv("result");
+            }
+            function printDiv(divName) {
+                var printContents = document.getElementById(divName).innerHTML;
+                var originalContents = document.body.innerHTML;
+
+                document.body.innerHTML = printContents;
+
+                window.print();
+
+                document.body.innerHTML = originalContents;
+            }
+
+        </script>
+    </body>
+    
+
+    
+</html>
